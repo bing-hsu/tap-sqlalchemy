@@ -1,6 +1,6 @@
 # tap-sql
 
 ## Supported Database
-[x] - PostgreSQL
-[] - SQL Server
-[] - SQLite
+- [x] PostgreSQL
+- [ ] SQL Server
+- [ ] SQLite
