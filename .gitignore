@@ -1,4 +1,7 @@
 .idea
+.private/
+
+actual_stdout.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

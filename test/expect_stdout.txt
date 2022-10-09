@@ -1,0 +1,4 @@
+{"type": "SCHEMA", "stream": "stream 1", "schema": {}, "key_properties": []}
+{"type": "RECORD", "stream": "stream 1", "record": {"a": 1, "b": "A"}}
+{"type": "RECORD", "stream": "stream 1", "record": {"a": 2, "b": "B"}}
+{"type": "RECORD", "stream": "stream 1", "record": {"a": 3, "b": "C"}}

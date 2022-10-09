@@ -1,4 +1,4 @@
-# tap-sql
+# tap-sqlalchemy
 
 # Roadmap
 
@@ -8,7 +8,7 @@
 
 ## Tap Configuration Document
 
-* polygloat connection parameters
+* polyglot connection parameters
 * stream selection
 
 ## Tap Catalog Document
