@@ -4,7 +4,7 @@ import singer
 from singer import CatalogEntry
 
 from tap_sqlalchemy.Database import Database
-from tap_sqlalchemy.utils import get_stream_meta
+from .helpers import get_stream_meta
 
 
 class CustomQueryTapStream:

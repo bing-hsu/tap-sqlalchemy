@@ -18,8 +18,6 @@ def main():
     if args.discover:
         raise Exception("Discover mode is not supported")
 
-    utils.ProjectStructure.print()
-
     config = args.config
     state = args.state
     catalog = args.catalog
@@ -39,7 +37,8 @@ def main():
         if catalog_entry is None:
             raise Exception(f"stream [{stream_id}] is included in Config document but not defined in Catalog document")
 
-        tap_stream = get_tap_stream(catalog_entry, config, state, database, sql_dir=utils.sql_dir)
+        tap_stream = get_tap_stream(catalog_entry, config, state, database,
+                                    sql_dir=utils.WorkingDirectory.get_sql_dir())
         tap_stream.sync()
 
 

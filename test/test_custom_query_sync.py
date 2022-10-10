@@ -8,12 +8,13 @@ from sqlalchemy import create_engine
 
 from tap_sqlalchemy.Database import Database
 from tap_sqlalchemy.tapstream import get_tap_stream
-from testutils import test_conf_dir, test_dir
+from testutils import test_resource_dir, test_dir
 
 
 class TestCustomQuerySync(unittest.TestCase):
 
-    def prepare_db(self):
+    @staticmethod
+    def prepare_db():
         db_path = Path(__file__).parent / 'test_db.db'
         db_path.unlink(missing_ok=True)
         db_path.touch(exist_ok=True)
@@ -40,10 +41,10 @@ class TestCustomQuerySync(unittest.TestCase):
 
     def test_sync(self):
         conn_str = self.prepare_db()
-        sql_dir = test_conf_dir / 'sql'
-        config = json.loads((test_conf_dir / 'config.json').read_text())
-        state = json.loads((test_conf_dir / 'state.json').read_text())
-        catalog = Catalog.load(test_conf_dir / 'catalog.json')
+        sql_dir = test_resource_dir / 'sql'
+        config = json.loads((test_resource_dir / 'config.json').read_text())
+        state = json.loads((test_resource_dir / 'state.json').read_text())
+        catalog = Catalog.load(test_resource_dir / 'catalog.json')
 
         # redirect stdout to file
         with (

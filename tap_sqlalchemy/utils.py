@@ -1,40 +1,59 @@
 import logging.config
+import os
 from pathlib import Path
 
-import singer
-from singer import CatalogEntry, metadata
+_pwd = Path(os.getcwd())
 
 
-# Project Structure
-class ProjectStructure:
-    PACKAGE_DIR = Path(__file__).parent
-    CONF_DIR = PACKAGE_DIR / 'conf'
-    SQL_DIR = CONF_DIR / 'sql'
+class WorkingDirectory:
 
-    @classmethod
-    def print(cls):
-        dir_list = [x for x in dir(cls) if not x.startswith('_') and isinstance(getattr(cls, x), Path)]
-        print("# PROJECT STRUCTURE")
-        print("#")
-        for dir_str in dir_list:
-            print(f"# {dir_str:13} = {getattr(cls, dir_str)}")
-        print("#")
+    @staticmethod
+    def get_sql_dir() -> Path:
+        return WorkingDirectory.get_directory() / 'sql'
 
+    @staticmethod
+    def get_directory() -> Path:
+        """
+        Working Directory of this tap
+        1. current directory
+        2. env "TAP_SQLALCHEMY_HOME"
+        3. "$HOME/.tap-sqlalchemy"
+        """
+        ok, p = WorkingDirectory._check_pwd()
+        if ok:
+            return p
 
-pkg_dir = ProjectStructure.PACKAGE_DIR
-conf_dir = ProjectStructure.CONF_DIR
-sql_dir = ProjectStructure.SQL_DIR
+        ok, p = WorkingDirectory._check_env()
+        if ok:
+            return p
 
+        return WorkingDirectory._check_home_dir()
 
-# Utility Routines
-def get_stream_meta(catalog_entry: CatalogEntry):
-    compiled = singer.metadata.to_map(catalog_entry.metadata)
-    return compiled.get((), None)
+    @staticmethod
+    def _check_home_dir() -> Path:
+        p = Path(os.path.expanduser("~")) / '.tap-sqlalchemy'
+        if p.is_file():
+            raise Exception(f"{p} already exists and is a file")
+        p.mkdir(exist_ok=True)
+        return p
+
+    @staticmethod
+    def _check_env() -> (bool, Path):
+        v = os.environ.get("TAP_SQLALCHEMY_HOME", None)
+        return (v is not None and Path(v).is_dir()), Path(v)
+
+    @staticmethod
+    def _check_pwd() -> (bool, Path):
+        return WorkingDirectory._has_sql_dir(_pwd), _pwd
+
+    @staticmethod
+    def _has_sql_dir(wd: Path) -> bool:
+        return (wd / 'sql').is_dir()
 
 
 # Logger
 def _get_logger():
-    logging_conf_file = pkg_dir / 'logging.conf'
+    logging_conf_file = Path(__file__).parent / 'logging.conf'
     logging.config.fileConfig(logging_conf_file)
     return logging.getLogger()
 

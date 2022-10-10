@@ -1,4 +1,4 @@
-from tap_sqlalchemy.utils import pkg_dir
+from pathlib import Path
 
-test_dir = pkg_dir.parent / 'test'
-test_conf_dir = test_dir / 'resource'
+test_dir = Path(__file__).parent
+test_resource_dir = test_dir / 'resource'
