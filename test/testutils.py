@@ -1,4 +1,4 @@
-from utils import project_dir
+from tap_sqlalchemy.utils import pkg_dir
 
-test_dir = project_dir / 'test'
-test_conf_dir = test_dir / 'test_conf'
+test_dir = pkg_dir.parent / 'test'
+test_conf_dir = test_dir / 'resource'

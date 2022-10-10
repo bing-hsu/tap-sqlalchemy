@@ -1,9 +1,10 @@
 # tap-sqlalchemy
 
+
 # Roadmap
 
-## Database to Support
+### Supported RDBMS
 - [x] SQLite
 - [x] SQL Server
 
-## Design And Considerations [https://github.com/YiwenData/tap-sqlalchemy/issues/1]
+### Design And Considerations [#1](https://github.com/YiwenData/tap_sqlalchemy/issues/1)

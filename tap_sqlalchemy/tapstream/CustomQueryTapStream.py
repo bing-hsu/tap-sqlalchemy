@@ -3,8 +3,8 @@ from pathlib import Path
 import singer
 from singer import CatalogEntry
 
-from Database import Database
-from utils import get_stream_meta
+from tap_sqlalchemy.Database import Database
+from tap_sqlalchemy.utils import get_stream_meta
 
 
 class CustomQueryTapStream:

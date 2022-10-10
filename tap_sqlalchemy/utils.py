@@ -7,8 +7,8 @@ from singer import CatalogEntry, metadata
 
 # Project Structure
 class ProjectStructure:
-    PROJECT_DIR = Path(__file__).parent.parent
-    CONF_DIR = PROJECT_DIR / 'conf'
+    PACKAGE_DIR = Path(__file__).parent
+    CONF_DIR = PACKAGE_DIR / 'conf'
     SQL_DIR = CONF_DIR / 'sql'
 
     @classmethod
@@ -21,7 +21,7 @@ class ProjectStructure:
         print("#")
 
 
-project_dir = ProjectStructure.PROJECT_DIR
+pkg_dir = ProjectStructure.PACKAGE_DIR
 conf_dir = ProjectStructure.CONF_DIR
 sql_dir = ProjectStructure.SQL_DIR
 
@@ -34,7 +34,7 @@ def get_stream_meta(catalog_entry: CatalogEntry):
 
 # Logger
 def _get_logger():
-    logging_conf_file = project_dir / 'conf' / 'logging.conf'
+    logging_conf_file = pkg_dir / 'logging.conf'
     logging.config.fileConfig(logging_conf_file)
     return logging.getLogger()
 

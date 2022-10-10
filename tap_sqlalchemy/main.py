@@ -3,11 +3,11 @@ import sys
 import traceback
 
 import singer
-import utils
 
-from Database import Database
-from utils import taplog
-from tapstream import get_tap_stream
+from tap_sqlalchemy import utils
+from tap_sqlalchemy.Database import Database
+from tap_sqlalchemy.utils import taplog
+from tap_sqlalchemy.tapstream import get_tap_stream
 
 REQUIRED_CONFIG_KEYS = ['connection.conn_string', 'sync.include_streams']
 
@@ -17,6 +17,8 @@ def main():
 
     if args.discover:
         raise Exception("Discover mode is not supported")
+
+    utils.ProjectStructure.print()
 
     config = args.config
     state = args.state
@@ -43,7 +45,6 @@ def main():
 
 if __name__ == '__main__':
     try:
-        utils.ProjectStructure.print()
         main()
     except Exception as e:
         taplog.error(e)

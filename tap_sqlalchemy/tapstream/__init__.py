@@ -2,10 +2,10 @@ from pathlib import Path
 
 from singer import CatalogEntry
 
-from Database import Database
-from utils import get_stream_meta
 from .CustomQueryTapStream import CustomQueryTapStream
 from .ReplicationMethod import ReplicationMethod
+from ..Database import Database
+from ..utils import get_stream_meta
 
 
 def get_tap_stream(catalog_entry: CatalogEntry, config, state, db: Database, sql_dir: Path):
