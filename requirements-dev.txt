@@ -1,4 +1,8 @@
+build==0.8.0
+pip==22.2.2
 psycopg2-binary==2.9.3
 pyodbc==4.0.34
+setuptools==58.1.0
 singer-python==5.12.2
 SQLAlchemy==1.4.41
+twine==4.0.1
