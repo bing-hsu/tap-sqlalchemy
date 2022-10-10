@@ -3,14 +3,7 @@
 # Roadmap
 
 ## Database to Support
-- [ ] SQLite
-- [ ] SQL Server
+- [x] SQLite
+- [x] SQL Server
 
-## Tap Configuration Document
-
-* polyglot connection parameters
-* stream selection
-
-## Tap Catalog Document
-
-* custom query statement as stream definition
+## Design And Considerations [https://github.com/YiwenData/tap-sqlalchemy/issues/1]
