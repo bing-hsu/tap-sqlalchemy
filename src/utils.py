@@ -4,10 +4,26 @@ from pathlib import Path
 import singer
 from singer import CatalogEntry, metadata
 
+
 # Project Structure
-project_dir = Path(__file__).parent.parent
-conf_dir = project_dir / 'conf'
-sql_dir = conf_dir / 'sql'
+class ProjectStructure:
+    PROJECT_DIR = Path(__file__).parent.parent
+    CONF_DIR = PROJECT_DIR / 'conf'
+    SQL_DIR = CONF_DIR / 'sql'
+
+    @classmethod
+    def print(cls):
+        dir_list = [x for x in dir(cls) if not x.startswith('_') and isinstance(getattr(cls, x), Path)]
+        print("# PROJECT STRUCTURE")
+        print("#")
+        for dir_str in dir_list:
+            print(f"# {dir_str:13} = {getattr(cls, dir_str)}")
+        print("#")
+
+
+project_dir = ProjectStructure.PROJECT_DIR
+conf_dir = ProjectStructure.CONF_DIR
+sql_dir = ProjectStructure.SQL_DIR
 
 
 # Utility Routines

@@ -43,6 +43,7 @@ def main():
 
 if __name__ == '__main__':
     try:
+        utils.ProjectStructure.print()
         main()
     except Exception as e:
         taplog.error(e)
