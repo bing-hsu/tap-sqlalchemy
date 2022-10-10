@@ -1,1 +1,1 @@
-include tap_sqlalchemy/*
+include yw_etl_tapsqlalchemy/*

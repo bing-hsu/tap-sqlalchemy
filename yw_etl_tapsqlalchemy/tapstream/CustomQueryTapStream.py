@@ -3,7 +3,7 @@ from pathlib import Path
 import singer
 from singer import CatalogEntry
 
-from tap_sqlalchemy.Database import Database
+from yw_etl_tapsqlalchemy.Database import Database
 from .helpers import get_stream_meta
 
 

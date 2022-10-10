@@ -6,8 +6,8 @@ from pathlib import Path
 from singer import Catalog
 from sqlalchemy import create_engine
 
-from tap_sqlalchemy.Database import Database
-from tap_sqlalchemy.tapstream import get_tap_stream
+from yw_etl_tapsqlalchemy.Database import Database
+from yw_etl_tapsqlalchemy.tapstream import get_tap_stream
 from testutils import test_resource_dir, test_dir
 
 
