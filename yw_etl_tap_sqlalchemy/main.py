@@ -4,10 +4,10 @@ import traceback
 
 import singer
 
-from yw_etl_tapsqlalchemy import utils
-from yw_etl_tapsqlalchemy.Database import Database
-from yw_etl_tapsqlalchemy.utils import taplog
-from yw_etl_tapsqlalchemy.tapstream import get_tap_stream
+from yw_etl_tap_sqlalchemy import utils
+from yw_etl_tap_sqlalchemy.Database import Database
+from yw_etl_tap_sqlalchemy.utils import taplog
+from yw_etl_tap_sqlalchemy.tapstream import get_tap_stream
 
 REQUIRED_CONFIG_KEYS = ['connection.conn_string', 'sync.include_streams']
 

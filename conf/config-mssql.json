@@ -1,4 +1,6 @@
 {
   "connection.conn_string": "mssql+pyodbc://sa:!Strong12345678@localhost:1433/master?driver=ODBC+Driver+17+for+SQL+Server",
-  "sync.include_streams": [ "mssql" ]
+  "sync.include_streams": [
+    "mssql"
+  ]
 }
