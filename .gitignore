@@ -1,5 +1,6 @@
 .idea
 .private/
+conf/
 
 actual_stdout.txt
 

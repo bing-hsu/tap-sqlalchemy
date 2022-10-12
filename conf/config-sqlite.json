@@ -1,5 +1,0 @@
-{
-  "connection.conn_string": "sqlite:////Users/bingxugao/Local/home/Project/tap-sqlalchemy/.private/data.db",
-  "sync.include_streams": [ "sqlite" ],
-  "sync.working_directory": "."
-}
