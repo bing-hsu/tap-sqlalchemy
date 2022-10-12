@@ -4,30 +4,23 @@ import singer
 from singer import CatalogEntry
 
 from yw_etl_tap_sqlalchemy.Database import Database
-from .helpers import get_stream_meta
+from yw_etl_tap_sqlalchemy.tapstream.TapStream import TapStream
 
 
-class CustomQueryTapStream:
+class CustomQueryTapStream(TapStream):
     def __init__(self, catalog_entry: CatalogEntry, config, state, db: Database, sql_dir: Path):
-        self.db = db
-        self.state = state
-        self.config = config
-        self.catalog_entry = catalog_entry
+        super().__init__(catalog_entry, config, state)
 
-        self.stream_name = self.catalog_entry.stream
+        self.db = db
 
         query_file = self.stream_meta.get('replication-sql-file', None)
         if query_file is None:
             raise Exception(
                 f"{self} : replication-sql-file is not set")
-        self._query = (sql_dir / query_file).read_text(encoding='utf8')
-
-    def __str__(self):
-        return f"{self.__class__.__name__}(name={self.catalog_entry.stream}, id={self.catalog_entry.tap_stream_id})"
-
-    @property
-    def stream_meta(self):
-        return get_stream_meta(self.catalog_entry)
+        if (query_file_path := Path(query_file)).is_absolute():
+            self._query = query_file_path.read_text()
+        else:
+            self._query = (sql_dir / query_file_path).read_text(encoding='utf8')
 
     def sync(self):
         singer.write_schema(self.catalog_entry.stream, self.catalog_entry.schema.to_dict(), [])

@@ -1,4 +1,0 @@
-{
-  "connection.conn_string": "sqlite:////Users/bingxugao/Local/home/Project/tap-sqlalchemy/test/test_db.db",
-  "sync.include_streams": [ "1" ]
-}

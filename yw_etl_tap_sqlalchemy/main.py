@@ -4,7 +4,7 @@ import traceback
 
 import singer
 
-from yw_etl_tap_sqlalchemy import utils
+from yw_etl_tap_sqlalchemy.WorkingDirectory import WorkingDirectory
 from yw_etl_tap_sqlalchemy.Database import Database
 from yw_etl_tap_sqlalchemy.utils import taplog
 from yw_etl_tap_sqlalchemy.tapstream import get_tap_stream
@@ -38,7 +38,7 @@ def main():
             raise Exception(f"stream [{stream_id}] is included in Config document but not defined in Catalog document")
 
         tap_stream = get_tap_stream(catalog_entry, config, state, database,
-                                    sql_dir=utils.WorkingDirectory.get_sql_dir())
+                                    sql_dir=WorkingDirectory.get_sql_dir(config))
         tap_stream.sync()
 
 
