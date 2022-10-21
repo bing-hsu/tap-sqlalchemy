@@ -22,7 +22,9 @@ def _get_engine(conn_str: str):
         auth_mechanism = qs.get('auth_mechanism', [None])[0]
         if auth_mechanism is None:
             raise Exception(
-                "impala+pyodbc connection string requires parameter: auth_mechanism, supported value ['LDAP']")
+                "impala+pyodbc connection string requires parameter: auth_mechanism, supported value "
+                "['LDAP', 'NOSASL', 'PLAIN', 'GSSAPI', 'JWT'] "
+                "see https://github.com/cloudera/impyla/blob/master/impala/dbapi.py#L71")
 
         p = Path(conn_url.path)
         database = None
