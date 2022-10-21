@@ -2,3 +2,4 @@ psycopg2-binary==2.9.3
 pyodbc==4.0.34
 singer-python==5.12.2
 SQLAlchemy==1.4.41
+impyla==0.18.0

@@ -4,8 +4,21 @@
 
 ### Supported RDBMS
 
-- [x] SQLite
-- [x] SQL Server
+- [x] SQLite, see [SQLite with SQLAlchemy](https://docs.sqlalchemy.org/en/14/dialects/sqlite.html#connect-strings)
+- [x] SQL Server, see [PyODBC with SQLAlchemy](https://docs.sqlalchemy.org/en/14/dialects/mssql.html#module-sqlalchemy.dialects.mssql.pyodbc)
+- [x] Impala
+  ```
+  Impala connection string is not natively supported by SQLAlchemy, 
+  tap-sqlalchemy provides familiar connectiong string format and the 
+  connection is supported by [impyla](https://github.com/cloudera/impyla)
+  
+  Impala "connection.conn_string" format:
+  
+  impala+pyodbc://[username][:][password][@]host:port[/default_db]?auth_mechanism=LDAP
+  
+  - auth_mechanism is required, and supports only one value: LDAP
+  - <host> and <port> are required
+  ```
 
 # Guide
 
