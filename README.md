@@ -80,7 +80,15 @@ Tap Catalog is a JSON document of one object containing definitions of data stre
           "breadcrumb": [],
           // mandatory
           // specific meta data entry, key value pair
-          "metadata": {}
+          "metadata": {
+            // Two special Keys that are of special interests
+            // for SQL-based replication
+            "replication-method": "CUSTOM_QUERY", 
+            // relative path is resolved against
+            // <working-directory/sql
+            // absolute path is treated as it is
+            "replication-sql-file": "query.sql"
+          }
         }
       ]
     }
